@@ -1,22 +1,31 @@
-const sumarLento = (numero) => {
+const sumar = (n1 , n2) => {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(numero + 1);
-        }, 800);
+        resolve(n1 + n2);
     });
 }
 
-const sumarRapido = (numero) => {
+const resta = (n1, n2) => {
     return new Promise((resolve, reject) => {
-        setTimeout(()=> {
-            resolve(numero + 1);            
-        }, 300);
+        setTimeout(function () {
+            resolve(n1 - n2);            
+        }, 1200);
     });
 }
 
-//Promisse.all ejecuta todas las prmesas y devuelve unm arreglo con los resultados
-// Si una de las promesas falla, falla todo el arreglo
-Promise.all([sumarLento(5), sumarRapido(10), true, 'Hola mundo'])
+const mensaje = (mensaje) => {
+    return new Promise((resolve, reject) => {
+        resolve(mensaje);
+    });
+}
+
+// const mensaje = (mensaje) => {
+//     return new Promise((resolve, reject) => {
+//         reject('Error en la promesa');
+//     });
+// }
+// si una falla todo se detiene
+
+Promise.all([ resta(8, 8), sumar(5, 5), mensaje('Hola mundo')])
     .then(respuestas => {
         console.log(respuestas);
     })
